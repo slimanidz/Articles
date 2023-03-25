@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { auth, db } from "../pages/firebaseConfig";
+import { auth, db } from "./FirebaseConfig";
 import { useAppContext } from "./AppContext";
 import DeleteArticle from "./DeleteArticle";
 import formatLongDateTime from "./Formateurs/FormatDate";

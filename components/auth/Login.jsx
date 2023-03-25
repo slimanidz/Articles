@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { auth } from "../../pages/firebaseConfig";
+import { auth, db, storage } from "../FirebaseConfig";
 
 export default function Login() {
   // let navigate = useNavigate();
@@ -20,17 +20,19 @@ export default function Login() {
     }
   };
   return (
-    <div
-      className="border p-3 bg-light mx-auto"
-      style={{ maxWidth: 400, marginTop: 60 }}
-    >
-      <Link href="/sign-in">cree un compte</Link>
-      <h1>Login</h1>
-      <div className="form-group">
+    <div className="border p-3 ">
+      <h1 className="text-3xl font-bold text-center">Login</h1>
+      <div className="p-3 text-center">
+        <Link href="/sign-in" className="text-center bg-slate-200 p-1 rounded">
+          cree un compte
+        </Link>
+      </div>
+
+      <div className="flex flex-col">
         <label>Email</label>
         <input
           type="email"
-          className="form-control"
+          className="border"
           placeholder="Enter your email"
           onChange={(e) => {
             setEmail(e.target.value);
@@ -38,11 +40,11 @@ export default function Login() {
         />
       </div>
 
-      <div className="form-group">
+      <div className="flex flex-col">
         <label>Password</label>
         <input
           type="password"
-          className="form-control"
+          className="border"
           placeholder="Password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -50,7 +52,10 @@ export default function Login() {
         />
       </div>
       <br />
-      <button className="btn btn-primary" onClick={handleLogin}>
+      <button
+        className="w-full bg-blue-500 active:bg-blue-300 text-white font-bold"
+        onClick={handleLogin}
+      >
         Login
       </button>
     </div>

@@ -3,7 +3,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 // import { useParams } from "react-router-dom";
 import { useAppContext } from "../components/AppContext";
 import Header from "../components/Header";
-import { auth, db } from "./firebaseConfig";
+import { auth, db } from "../components/FirebaseConfig";
 import formatLongDateTime from "../components/Formateurs/FormatDate";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
@@ -30,7 +30,7 @@ const Article = () => {
       {article ? (
         <div className="flex flex-col gap-5 items-center justify-center">
           <div className="w-full flex justify-between p-3 ">
-            <p>Created by: {user.displayName}</p>
+            <p>Created by: {article.username}</p>
             <p>
               {" "}
               Created at:{" "}

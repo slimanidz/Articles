@@ -2,8 +2,9 @@ import { Timestamp, collection, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
-import { auth, db, storage } from "../pages/firebaseConfig";
+// import { auth} from "../pages/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db, storage } from "./FirebaseConfig";
 
 const AddArticle = () => {
   const user = useAuthState(auth);

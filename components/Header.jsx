@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import Link from "next/link";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../pages/firebaseConfig";
+import { auth } from "./FirebaseConfig";
 import { AiOutlineHome } from "react-icons/ai";
 import { VscSignOut } from "react-icons/vsc";
 const Header = () => {

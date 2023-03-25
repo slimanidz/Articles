@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { auth, db } from "./firebaseConfig";
 import formatLongDateTime from "../components/Formateurs/FormatDate";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Image from "next/image";
 
 const Article = () => {
   // const { id } = useParams();
@@ -19,7 +20,7 @@ const Article = () => {
     onSnapshot(docRef, (snapshot) => {
       setArticle({ ...snapshot.data(), id: snapshot.id });
     });
-  }, []);
+  }, [id]);
   console.log(article);
   return (
     <div>
@@ -38,11 +39,13 @@ const Article = () => {
           </div>
 
           <h1 className="text-4xl font-bold">{article.title}</h1>
-          <img
+          <Image
             src={`${article.imageUrl}`}
             alt="title"
-            // style={{ height: 400, width: 500 }}
+            width={500}
+            height={500}
           />
+
           <p className="w-[75%] text-xl">{article.description}</p>
         </div>
       ) : null}

@@ -1,13 +1,9 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import { Link } from "react-router-dom";
-// import DeleteArticle from "./DeleteArticle";
-// import { useAuthState } from "react-firebase-hooks/";
-// import LikeArticle from "./LikeArticle";
+
 import { auth, db } from "../pages/firebaseConfig";
 import { useAppContext } from "./AppContext";
 import DeleteArticle from "./DeleteArticle";
@@ -57,10 +53,12 @@ const Articles = () => {
                   className="flex justify-center"
                   data-id={id}
                 >
-                  <img
+                  {console.log(imageUrl)}
+                  <Image
                     src={`${imageUrl}`}
                     alt="title"
-                    style={{ height: 180, width: 180 }}
+                    width={180}
+                    height={180}
                   />
                 </button>
               </div>

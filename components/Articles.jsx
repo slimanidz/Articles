@@ -24,13 +24,11 @@ const Articles = () => {
         ...doc.data(),
       }));
       setArticles(articles);
-      console.log(articles);
     });
   }, []);
 
   const handleClick = (event) => {
     const id = String(event.currentTarget.getAttribute("data-id"));
-    console.log(id);
     setNounouIdC1(id);
     router.push("/article");
   };
@@ -53,7 +51,6 @@ const Articles = () => {
                   className="flex justify-center"
                   data-id={id}
                 >
-                  {console.log(imageUrl)}
                   <Image
                     src={`${imageUrl}`}
                     alt="title"

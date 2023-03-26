@@ -3,17 +3,20 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../FirebaseConfig";
 import Header from "../Header";
 import { useRouter } from "next/router";
+import { useAppContext } from "../AppContext";
 
 export default function Register() {
   const Router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const { setUser } = useAppContext();
 
   const handleSignup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       updateProfile(auth.currentUser, { displayName: name });
+      setUser(name);
       Router.push("/");
     } catch (error) {
       alert("Oooops error");
@@ -59,7 +62,10 @@ export default function Register() {
           />
         </div>
         <br />
-        <button className="btn btn-primary" onClick={handleSignup}>
+        <button
+          className="bg-blue-500 active:bg-blue-300 p-2 rounded text-white font-bold"
+          onClick={handleSignup}
+        >
           Register
         </button>
       </div>

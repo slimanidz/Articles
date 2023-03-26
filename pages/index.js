@@ -14,11 +14,13 @@ export default function Home() {
         <Header />
       </div>
 
-      <div className="md:flex md:flex-row-reverse gap-5 m-5 ">
-        <div className="flex flex-col gap-3 m-5">
+      <div className="md:flex md:flex-row-reverse md:justify-between gap-5 m-5 ">
+        <div className="flex flex-col  gap-3 m-5">
           {user ? <AddArticle /> : <Login />}
         </div>
-        <Articles />
+        <div className=" ">
+          <Articles />
+        </div>
       </div>
     </div>
   );

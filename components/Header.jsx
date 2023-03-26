@@ -7,7 +7,6 @@ import { AiOutlineHome } from "react-icons/ai";
 import { VscSignOut } from "react-icons/vsc";
 const Header = () => {
   const [user] = useAuthState(auth);
-  console.log(user);
   return (
     <div className="flex justify-between items-center p-2  bg-slate-200">
       <Link href="/" className="flex">

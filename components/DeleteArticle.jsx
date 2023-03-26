@@ -21,7 +21,7 @@ export default function DeleteArticle({ id, imageUrl }) {
   return (
     <div>
       <i
-        className="bg-red-700 p-2 rounded text-white cursor-pointer"
+        className="bg-red-700 px-2 py-1 rounded text-white cursor-pointer"
         onClick={handleDelete}
       >
         Delete

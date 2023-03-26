@@ -11,7 +11,6 @@ import Image from "next/image";
 const Article = () => {
   // const { id } = useParams();
   const { id } = useAppContext();
-  console.log(id);
   const [article, setArticle] = useState(null);
   const [user] = useAuthState(auth);
 
@@ -21,7 +20,6 @@ const Article = () => {
       setArticle({ ...snapshot.data(), id: snapshot.id });
     });
   }, [id]);
-  console.log(article);
   return (
     <div>
       <Header />

@@ -5,9 +5,12 @@ import { toast } from "react-toastify";
 // import { auth} from "../pages/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, storage } from "./FirebaseConfig";
+import { useAppContext } from "./AppContext";
 
 const AddArticle = () => {
   const user = useAuthState(auth);
+  // const { user } = useAppContext();
+  console.log(user);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -80,7 +83,7 @@ const AddArticle = () => {
   };
 
   return (
-    <div className="border p-3 mt-3 bg-light flex flex-col">
+    <div className="border p-3 mt-3 flex flex-col">
       <>
         <h2>Create article</h2>
         <div className="flex flex-col">
@@ -99,7 +102,7 @@ const AddArticle = () => {
           <label htmlFor="">Description</label>
           <textarea
             name="description"
-            className="border"
+            className="border h-32"
             value={formData.description}
             onChange={(e) => handleChange(e)}
           />
@@ -111,7 +114,7 @@ const AddArticle = () => {
           type="file"
           name="image"
           accept="image/*"
-          className="form-control"
+          className="border"
           onChange={(e) => handleImageChange(e)}
         />
 

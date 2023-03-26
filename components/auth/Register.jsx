@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import { auth, db, storage } from "../FirebaseConfig";
 import Header from "../Header";
 import { useRouter } from "next/router";
@@ -10,14 +14,14 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { setUser } = useAppContext();
 
   const handleSignup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       updateProfile(auth.currentUser, { displayName: name });
-      setUser(name);
+      signOut(auth);
       Router.push("/");
+      alert("account created successfully, you can login now.");
     } catch (error) {
       alert("Oooops error");
     }

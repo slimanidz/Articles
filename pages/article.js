@@ -31,8 +31,7 @@ const Article = () => {
           <div className="w-full flex justify-between p-3 ">
             <p>Created by: {article.username}</p>
             <p>
-              {" "}
-              Created at:{" "}
+              Created at:
               {formatLongDateTime(new Date(article.createdAt.toDate()))}
             </p>
           </div>
@@ -51,9 +50,9 @@ const Article = () => {
           >
             {article.description}
           </p>
-          <p className="w-full flex justify-end p-5 text-xl">
+          <div className="w-full flex justify-end p-5 text-xl">
             <LikeArticle id={id} likes={article.likes} />
-          </p>
+          </div>
         </div>
       ) : null}
     </div>

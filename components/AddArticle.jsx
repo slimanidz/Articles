@@ -1,16 +1,12 @@
 import { Timestamp, collection, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { toast } from "react-toastify";
-// import { auth} from "../pages/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, storage } from "./FirebaseConfig";
 import { useAppContext } from "./AppContext";
 
 const AddArticle = () => {
   const user = useAuthState(auth);
-  // const { user } = useAppContext();
-  console.log(user);
   const [formData, setFormData] = useState({
     title: "",
     description: "",

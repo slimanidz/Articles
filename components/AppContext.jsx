@@ -12,9 +12,8 @@ export const useAppContext = () => useContext(AppContext);
 const AppContextProvider = (props) => {
   const [id, setArticleId] = useState("");
   const [user, setUser] = useState("");
-  console.log(user);
 
-  const setNounouIdC1 = useCallback((id) => {
+  const setIdFunction = useCallback((id) => {
     setArticleId(id);
   }, []);
 
@@ -22,7 +21,7 @@ const AppContextProvider = (props) => {
     <AppContext.Provider
       {...props}
       value={{
-        setNounouIdC1,
+        setIdFunction,
         id,
         setUser,
         user,

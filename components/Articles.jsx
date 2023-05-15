@@ -8,12 +8,13 @@ import { auth, db } from "./FirebaseConfig";
 import { useAppContext } from "./AppContext";
 import DeleteArticle from "./DeleteArticle";
 import formatLongDateTime from "./Formateurs/FormatDate";
+import { AiFillHeart } from "react-icons/ai";
 
 const Articles = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
 
-  const { setNounouIdC1 } = useAppContext();
+  const { setIdFunction } = useAppContext();
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     const articleRef = collection(db, "Articles");
@@ -29,7 +30,7 @@ const Articles = () => {
 
   const handleClick = (event) => {
     const id = String(event.currentTarget.getAttribute("data-id"));
-    setNounouIdC1(id);
+    setIdFunction(id);
     router.push("/article");
   };
 
@@ -37,7 +38,15 @@ const Articles = () => {
     <>
       <div className="flex flex-wrap gap-5">
         {articles.map(
-          ({ id, title, description, imageUrl, createdAt, username }) => (
+          ({
+            id,
+            title,
+            description,
+            imageUrl,
+            createdAt,
+            username,
+            likes,
+          }) => (
             <div key={id} className="  bg-red-20 w-64">
               <div className="">
                 <h1 className="text-xl font-bold">{title}</h1>
@@ -46,19 +55,34 @@ const Articles = () => {
                   <p> {formatLongDateTime(new Date(createdAt.toDate()))}</p>
                 </div>
 
-                <button
-                  onClick={handleClick}
-                  className="flex justify-center"
-                  data-id={id}
-                >
-                  <Image
-                    src={`${imageUrl}`}
-                    alt="title"
-                    width={180}
-                    height={180}
-                  />
-                </button>
+                <div className="flex justify-between items-end">
+                  <button
+                    onClick={handleClick}
+                    className="flex justify-center"
+                    data-id={id}
+                  >
+                    <Image
+                      src={`${imageUrl}`}
+                      alt="title"
+                      width={180}
+                      height={180}
+                    />
+                  </button>{" "}
+                  <p className="flex gap-2 items-center">
+                    {user ? (
+                      <AiFillHeart
+                        className={
+                          likes?.includes(user.uid) ? "text-red-500" : ""
+                        }
+                      />
+                    ) : (
+                      <AiFillHeart />
+                    )}
+                    <span>{likes.length}</span>
+                  </p>
+                </div>
               </div>
+
               <p className="truncate">{description}</p>
               <div className="mt-2">
                 {user && user.displayName === username ? (
@@ -69,42 +93,6 @@ const Articles = () => {
           )
         )}
       </div>
-
-      {/* <div>
-        {articles.length === 0 ? (
-          <p>No articles found!</p>
-        ) : (
-          articles.map(
-            ({ id, title, description, imageUrl, createdAt, createdBy }) => (
-              <div className="border mt-3 p-3 bg-light" key={id}>
-                <div className="row">
-                  <div className="col-3">
-                    <Link to={`/article/${id}`}>
-                      <img
-                        src={imageUrl}
-                        alt="title"
-                        style={{ height: 180, width: 180 }}
-                      />
-                    </Link>
-                  </div>
-                  <div className="col-9 ps-3">
-                    <div className="row">
-                      <div className="col-6">
-                        {createdBy && (
-                          <span className="badge bg-primary">{createdBy}</span>
-                        )}
-                      </div>
-                    </div>
-                    <h3>{title}</h3>
-                    <p>{createdAt.toDate().toDateString()}</p>
-                    <h5>{description}</h5>
-                  </div>
-                </div>
-              </div>
-            )
-          )
-        )}
-      </div> */}
     </>
   );
 };

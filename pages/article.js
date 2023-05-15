@@ -7,6 +7,7 @@ import { auth, db } from "../components/FirebaseConfig";
 import formatLongDateTime from "../components/Formateurs/FormatDate";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
+import LikeArticle from "../components/LikeArticle";
 
 const Article = () => {
   // const { id } = useParams();
@@ -43,8 +44,16 @@ const Article = () => {
             width={500}
             height={500}
           />
-
-          <p className="w-[75%] text-xl">{article.description}</p>
+          {/* indent-20 */}
+          <p
+            className="w-[75%] text-xl text-justify first-letter:text-7xl first-letter:font-bold first-letter:text-slate-900
+  first-letter:mr-3 first-letter:float-left"
+          >
+            {article.description}
+          </p>
+          <p className="w-full flex justify-end p-5 text-xl">
+            <LikeArticle id={id} likes={article.likes} />
+          </p>
         </div>
       ) : null}
     </div>
